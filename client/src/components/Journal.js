@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
 import Header from './Header';
-
-
-var Buffer = require('buffer/').Buffer
-
 
 class Journal extends Component {
 
@@ -18,28 +13,25 @@ class Journal extends Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.entry); // doesn't work but I'll leave it
     this.setState({finished: true}); 
-    this.classifyTextAPI(this.state.entry.match(/([^\.!\?]+[\.!\?]+)|([^\.!\?]+$)/g));
+    this.classifyTextAPI(this.state.entry.match(/([^.!?]+[.!?]+)|([^.!?]+$)/g));
     event.preventDefault();
   }
 
   handleChange(event) {
     // updates entry value to include newly typed character
     this.setState({entry: this.state.entry + event.target.value});
-    
-    
   }
 
   classifyTextAPI = (inputs) => {
     console.log("type of inputs is: " + typeof(inputs));
     var querystring = "";
     for(let i = 0; i < inputs.length; i++) {
-      if(i == 0) {
-        querystring += "\?input=\"" + inputs[i]+"\"";
+      if(i === 0) {
+        querystring += "?input=\"" + inputs[i]+"\"";
       }
       else {
-        querystring += "\&input=\"" + inputs[i]+"\"";
+        querystring += "&input=\"" + inputs[i]+"\"";
       }
     }
     querystring = encodeURI('/api/classify-text' + querystring);
@@ -56,7 +48,6 @@ class Journal extends Component {
     return (
       <div className="App">
         <Header />
-         {/* header */}
         <div>
           <h1>Geode Journaling</h1>
           <ul>
@@ -65,12 +56,10 @@ class Journal extends Component {
           </ul>
           <h2>Write a journal entry below:</h2><br></br>
         </div>
-
         { !finished ? (
           // if not finished:
           <div>
-
-            <ul className="passwords">
+            <ul className="plaintext">
               <form onSubmit={ this.handleSubmit }>
                 <p>your entry:
                 {/* manual spacing, can replace with CSS/styling */}
@@ -88,11 +77,11 @@ class Journal extends Component {
         ) : (
           // if finished
           <div>
-            <ul className="passwords">
+            <ul className="plaintext">
                 <p>your entry: <br></br><br></br>
                 {this.state.entry}</p>
             </ul>
-            <ul className="passwords">
+            <ul className="plaintext">
               <p>your results: </p>
               {classifications.map((classif, index) =>
                 <li key={index}>
@@ -100,7 +89,6 @@ class Journal extends Component {
                 </li>
                 )}
             </ul>
-
             <div>
               <p>{classifications.includes("Catastrophizing") ? 
                 <div>
@@ -138,8 +126,6 @@ class Journal extends Component {
                 </div>
               : ""}</p>
             </div>
-            
-
           </div>
         )}
       </div>

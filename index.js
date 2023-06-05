@@ -3,10 +3,9 @@ const path = require('path');
 const generatePassword = require('password-generator');
 const cohere = require("cohere-ai");
 const { type } = require('os');
-cohere.init("9d5L8VPsV4SepwOYwBCLWzAMawvGos0LxmsCI4QM");
+cohere.init("IfAaBggpYhtRcUiu1oqPRKfwWpqjVnhXp6ij55bl");
 
 const app = express();
-// const inputs = "No one likes me" //, "I won't be able to achieve my goals"];
 
 const examples = [
   ({text: "If I don't get an internship, I'll never get a job", label: "Catastrophizing"}),
@@ -16,7 +15,6 @@ const examples = [
   ({text: "I'm inherently unlikable", label: "Low self esteem"}),
   ({text: "I'm bad at what I do", label: "Low self esteem"}),
 ]
-
 
 async function classifyExamples(input) {
 
@@ -33,18 +31,12 @@ async function classifyExamples(input) {
   return predictions
 }
 
-
-// Serve static files from the React app
-// app.use(express.static(path.join(__dirname, 'client/build')));
-
 app.get('/api/classify-text/', async (req, res) => {
   try {
     console.log("the input text is " + req.query.input);
-  
     const responses = await classifyExamples(req.query.input);
 
-  // console.log(`Sending response of ` + responses);
-    // Return them as json
+    // Return responses as json
     console.log("type of classify examples is: " + typeof(responses));
     console.log("type of array from classify examples is: " + typeof(Array.from(responses)));
     console.log("in the api call, we have:" + Array.from(responses));
@@ -55,11 +47,9 @@ app.get('/api/classify-text/', async (req, res) => {
   }
 });
 
-// The "catchall" handler: for any request that doesn't
-// match one above
+// The "catchall" handler: for any request that doesn't match one of the patterns above
 app.get('*', (req, res) => {
   console.log("the request format doesn't match what we want");
-  // res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;

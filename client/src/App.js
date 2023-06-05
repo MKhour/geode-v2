@@ -2,24 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Journal from './components/Journal';
-import Layout from './components/Layout';
+import Header from './components/Header';
 
 class App extends Component {
   render() {
     return (
-    <BrowserRouter>
-        
-          
-          <Routes>
-              <Route path='/' element={<Layout />} />
-              <Route path='journal' element={<Journal/>} />
-              {/* <Route path='/about' component={About} /> */}
-          </Routes>
-          {/* <Outlet /> */}
-    
-        
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Header />} />
+          <Route path='journal' element={<Journal/>} />
+        </Routes>
       </BrowserRouter>
-      
     );
   }
 }
