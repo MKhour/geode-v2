@@ -46,7 +46,7 @@ class Journal extends Component {
     const { finished } = this.state;
 
     return (
-      <div className="App">
+      <div className="App pages">
         <Header />
         <div>
           <h1>Geode Journaling</h1>

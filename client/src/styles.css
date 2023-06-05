@@ -2,7 +2,6 @@
 
 html {
   height: 100%;
-  background-image: linear-gradient(#ABD0E3, #D7EDF0, #D7EDF0);
   background-color: #D7EDF0;
 }
 
@@ -15,7 +14,7 @@ html {
 }
 
 .home-header {
-  background-image: url('../public/geode-header.png');
+  background-image: url('../public/geode-header-thin.png');
   /* background-size: cover; */
   /* Set rules to fill background */
   /* min-height: 100%; */
@@ -31,9 +30,19 @@ html {
   left: 0;
 
   height: 100%;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+}
+
+.pages {
+  height: 100%;
+  background-image: linear-gradient(#ABD0E3, #D7EDF0, #D7EDF0);
+  background-position: center top;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #D7EDF0;
 }
 
 .centered {
