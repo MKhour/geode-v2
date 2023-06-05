@@ -48,13 +48,13 @@ class Journal extends Component {
     return (
       <div className="App pages">
         <Header />
-        <div>
+        <div className='centered'>
           <h1>Geode Journaling</h1>
           <h2>Write a journal entry below:</h2><br></br>
         </div>
         { !finished ? (
           // if not finished:
-          <div>
+          <div className='centered'>
             <ul className="plaintext">
               <form onSubmit={ this.handleSubmit }>
                 <p>your entry:
@@ -72,7 +72,7 @@ class Journal extends Component {
           </div>
         ) : (
           // if finished
-          <div>
+          <div className='centered'>
             <ul className="plaintext">
                 <p>your entry: <br></br><br></br>
                 {this.state.entry}</p>

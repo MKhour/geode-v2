@@ -6,8 +6,14 @@ function Home() {
         <div className="home-header">
           <Header />
           <div class = "centered App">
-            <h1>Geode</h1>
-            <h3>Buttons here</h3>
+            <div class = "main-title">
+              <h1>geode</h1>
+              <p>Reveal the emotion within</p>
+            </div>
+            <div>
+              <button>Journal</button>
+              <button>Logs</button>
+            </div>
           </div>
         </div>
       );
