@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import ResponsePanel from './ResponsePanel';
 
 class Journal extends Component {
 
@@ -43,17 +44,12 @@ class Journal extends Component {
 
   render() {
     const { finished } = this.state;
-    const {classifications} = this.state;
 
     return (
       <div className="App">
         <Header />
         <div>
           <h1>Geode Journaling</h1>
-          <ul>
-            <li>Made for HooHacks 2023</li>
-            <li>Madelyn K., Catherine X., Megan K.</li>
-          </ul>
           <h2>Write a journal entry below:</h2><br></br>
         </div>
         { !finished ? (
@@ -81,51 +77,9 @@ class Journal extends Component {
                 <p>your entry: <br></br><br></br>
                 {this.state.entry}</p>
             </ul>
-            <ul className="plaintext">
-              <p>your results: </p>
-              {classifications.map((classif, index) =>
-                <li key={index}>
-                  {classif}
-                </li>
-                )}
-            </ul>
-            <div>
-              <p>{classifications.includes("Catastrophizing") ? 
-                <div>
-                  <p>Steps to stop catastrophizing:</p>
-                  <ul>
-                    <li>Say "stop" out loud</li>
-                    <li>Focus on what is rather than what if</li>
-                    <li>Try not to latch onto thoughts, just let them pass through your mind</li>
-                  </ul>
-                </div>
-              : ""}</p>
-            </div>
-            <div>
-              <p>{classifications.includes("Anxiety") ? 
-                <div>
-                  <p>Ways to manage anxiety:</p>
-                  <ul>
-                    <li>Talk to someone you trust</li>
-                    <li>Set aside time to focus on your worries so you're not worrying that you forgot something important</li>
-                    <li>Journal/write down your worries</li>
-                    <li>Do breathing exercises</li>
-                  </ul>
-                </div>
-              : ""}</p>
-            </div>
-            <div>
-              <p>{classifications.includes("Low self esteem") ? 
-                <div>
-                  <p>Ways to manage low self esteem:</p>
-                  <ul>
-                    <li>Take care of your physical health -- get enough sleep!</li>
-                    <li>Say kind things to yourself</li>
-                    <li>Ask people what they like about you</li>
-                  </ul>
-                </div>
-              : ""}</p>
-            </div>
+            
+            <ResponsePanel classifications={this.state.classifications} />
+           
           </div>
         )}
       </div>

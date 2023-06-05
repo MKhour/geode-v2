@@ -3,7 +3,7 @@ const path = require('path');
 const generatePassword = require('password-generator');
 const cohere = require("cohere-ai");
 const { type } = require('os');
-cohere.init("IfAaBggpYhtRcUiu1oqPRKfwWpqjVnhXp6ij55bl");
+cohere.init("API KEY");
 
 const app = express();
 
