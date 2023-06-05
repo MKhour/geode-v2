@@ -1,14 +1,53 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
+html {
+  height: 100%;
+  background-image: linear-gradient(#ABD0E3, #D7EDF0, #D7EDF0);
+  background-color: #D7EDF0;
+}
+
 .App {
   text-align: center;
+  align-items: center;
   width: 100%;
   font-family: 'Comfortaa', cursive;
+  color: #FFFFFF;
+}
+
+.home-header {
+  background-image: url('../public/geode-header.png');
+  /* background-size: cover; */
+  /* Set rules to fill background */
+  /* min-height: 100%; */
+  /* min-width: 1024px; */
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  /*height: auto;*/
+	
+  /* Set up positioning -- this makes the image go all the way to the edges of the page */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.centered {
+  text-align: center;
 }
 
 h1 {
   font-weight: normal;
   font-size: 42px;
+}
+
+.div {
+  align-content: center;
+  text-align: center;
 }
 
 .plaintext {

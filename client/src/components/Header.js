@@ -4,7 +4,6 @@ const Header = () => {
   return (
     <>
       <div className="App">
-        <h1>Welcome to Geode</h1>
         <nav>
           <ul>
             <li>
