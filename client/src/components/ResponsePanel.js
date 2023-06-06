@@ -2,20 +2,12 @@ import React from 'react';
 
 function ResponsePanel({classifications}) {
     return (
-        <div>
-
-            <ul className="plaintext">
-              <p>Your results: </p>
-              {classifications.map((classif, index) =>
-                <li key={index}>
-                  {classif}
-                </li>
-              )}
-            </ul>
+        <div className='info-panel'>
 
             <div>
               <p>{classifications.includes("Catastrophizing") ? 
                 <div>
+                  <p>You are showing signs of <textbf>catastrophizing</textbf>.</p>
                   <p>Steps to stop catastrophizing:</p>
                   <ul>
                     <li>Say "stop" out loud</li>
@@ -29,6 +21,7 @@ function ResponsePanel({classifications}) {
             <div>
               <p>{classifications.includes("Anxiety") ? 
                 <div>
+                  <p>You are showing signs of <textbf>anxiety</textbf>.</p>
                   <p>Ways to manage anxiety:</p>
                   <ul>
                     <li>Talk to someone you trust</li>
@@ -43,6 +36,7 @@ function ResponsePanel({classifications}) {
             <div>
               <p>{classifications.includes("Low self esteem") ? 
                 <div>
+                  <p>You are showing signs of <textbf>low self esteem</textbf>.</p>
                   <p>Ways to manage low self esteem:</p>
                   <ul>
                     <li>Take care of your physical health -- get enough sleep!</li>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 html {
-  background-image: linear-gradient(#90C4E8, #D7EDF0);
+  background-image: linear-gradient(#90C4E8,#D7EDF0, #D7EDF0); /* #90C4E8, #D7EDF0); */
   background-repeat: no-repeat;
   height: 100%;
   background-color: #D7EDF0;
@@ -15,7 +15,7 @@ html {
 
 .home-header {
   background-image: url('../public/geode-header-thin.png');
-
+  background-color: #D7EDF0;
   /* Set up positioning -- this makes the image go all the way to the edges of the page */
   position: fixed;
   top: 0;
@@ -33,13 +33,13 @@ html {
 
 h1 {
   font-weight: normal;
-  font-size: 64px;
+  font-size: 46px;
   padding: 0px;
   margin: 0px;
 }
 
 .nav-title {
-  font-size: 26px;
+  font-size: 32px;
 }
 
 .nav {
@@ -82,11 +82,14 @@ h1 {
 }
 
 .main-title {
+  font-size: 64px;
+  padding: 0px;
   padding-top: 10px;
+  margin: 0px;
 }
 
-button, input, textarea {
-  border-radius: 60px;
+button, input, textarea, .info-panel, .info-panel-light {
+  border-radius: 30px;
   background-color: #FFFFFF;
   padding: 16px 32px;
   color: #7FA3C0;
@@ -94,15 +97,31 @@ button, input, textarea {
   margin: 20px;
   border: none;
   font-family: 'Comfortaa';
+  font-size: 16px;
   text-align: center;
   display: inline-block; 
+  overflow:visible;
 }
 
-textarea {
-  border-radius: 16px;
-  min-width: 350px;
-  min-height: 50px;
-  overflow: visible;
+textarea, .info-panel, .info-panel-light {
+  align-self: center;
+  width: 60%;
+  min-height: 20%;
+}
+
+textarea:focus {
+  border: none;
+  outline:none;
+}
+
+textarea:select {
+  border: none;
+  outline: none;
+}
+
+.info-panel {
+  background-color: rgba(255, 255, 255, 0.4);
+  text-align: left;
 }
 
 @media screen and (min-width: 650px) {

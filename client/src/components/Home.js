@@ -1,18 +1,23 @@
 import React from 'react';
 import Header from './Header';
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
         <div className="home-header">
           <Header />
-          <div class = "centered App">
-            <div class = "main-title">
-              <h1>geode</h1>
-              <p>Reveal the emotion within</p>
+          <div className = "centered App">
+            <div>
+              <p className='main-title'>geode</p>
+              <p>reveal the emotion within</p>
             </div>
             <div>
-              <button>Journal</button>
-              <button>Logs</button>
+              <Link to="/journal">
+                <button>Journal</button>
+              </Link>
+              <Link to="/">
+                <button>Logs</button>
+              </Link>
             </div>
           </div>
         </div>
