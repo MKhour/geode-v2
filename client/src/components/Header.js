@@ -2,21 +2,12 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <>
-      <div className="App">
-        <h1>Welcome to Geode</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/journal">Journal</Link>
-            </li>
-          </ul>
-        </nav>   
-      </div>
-    </>
+    <nav className="nav App">
+      <ul>
+        <Link to="/" className="link nav-title">geode</Link>
+        <Link to="/journal" className="link">Journal</Link>
+      </ul>
+    </nav>
   )
 };
 

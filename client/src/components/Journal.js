@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import ResponsePanel from './ResponsePanel';
+import { Link } from "react-router-dom";
 
 class Journal extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {entry: '', value: "", finished: false, classifications: []};
-    // value has to stay, it clears the text area so that a character is only added once
+    this.state = {entry: '', finished: false, classifications: [], textAreaRows: 3};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
-    this.setState({finished: true}); 
-    this.classifyTextAPI(this.state.entry.match(/([^.!?]+[.!?]+)|([^.!?]+$)/g));
-    event.preventDefault();
+    if (this.state.entry != "") {
+      this.setState({finished: true}); 
+      this.classifyTextAPI(this.state.entry.match(/([^.!?]+[.!?]+)|([^.!?]+$)/g));
+      event.preventDefault();
+    }
   }
 
   handleChange(event) {
+    console.log(event);
     // updates entry value to include newly typed character
-    this.setState({entry: this.state.entry + event.target.value});
+    this.setState({entry: event.target.value});
+    const currentTextAreaHeight = event.target.scrollHeight;
+    const rowHeight = 20;
+    const numNewRowsNeeded = Math.ceil(currentTextAreaHeight / rowHeight) - 1;
+    if (numNewRowsNeeded > this.state.textAreaRows) {
+      this.setState({textAreaRows: numNewRowsNeeded});
+    }
+  }
+
+  preventBackspacing(event) {
+    const key = event.key; // const {key} = event; ES6+
+    if (key === "Backspace" || key === "Delete") {
+        // console.log("stop!!");
+        event.preventDefault();
+    }
+    // this.setState({entry: this.state.entry + event.key});
+    /*
+    var key = event.keyCode || event.charCode;
+
+    if( key == 8 || key == 46 )
+        return false;*/
   }
 
   classifyTextAPI = (inputs) => {
@@ -43,89 +67,39 @@ class Journal extends Component {
 
   render() {
     const { finished } = this.state;
-    const {classifications} = this.state;
 
     return (
       <div className="App">
         <Header />
-        <div>
-          <h1>Geode Journaling</h1>
-          <ul>
-            <li>Made for HooHacks 2023</li>
-            <li>Madelyn K., Catherine X., Megan K.</li>
-          </ul>
-          <h2>Write a journal entry below:</h2><br></br>
+        <div className='centered'>
+          <h1>Journal</h1>
+          <p>let your mind flow</p><br></br>
         </div>
         { !finished ? (
           // if not finished:
-          <div>
-            <ul className="plaintext">
-              <form onSubmit={ this.handleSubmit }>
-                <p>your entry:
-                {/* manual spacing, can replace with CSS/styling */}
+          <div className='centered'>
+              <form onSubmit={ this.handleSubmit } id="journal-entry-form">
+                <textarea onKeyDown={this.preventBackspacing} onChange={this.handleChange} rows={this.state.textAreaRows}/>
                 <br></br>
-                <br></br>
-                {this.state.entry}</p>
-
-                <textarea value={this.state.value} onChange={this.handleChange}/>
-                <br></br> 
-
                 <input type="submit" value="Done editing"></input>
               </form>
-            </ul>
           </div>
         ) : (
           // if finished
-          <div>
-            <ul className="plaintext">
-                <p>your entry: <br></br><br></br>
-                {this.state.entry}</p>
-            </ul>
-            <ul className="plaintext">
-              <p>your results: </p>
-              {classifications.map((classif, index) =>
-                <li key={index}>
-                  {classif}
-                </li>
-                )}
-            </ul>
-            <div>
-              <p>{classifications.includes("Catastrophizing") ? 
-                <div>
-                  <p>Steps to stop catastrophizing:</p>
-                  <ul>
-                    <li>Say "stop" out loud</li>
-                    <li>Focus on what is rather than what if</li>
-                    <li>Try not to latch onto thoughts, just let them pass through your mind</li>
-                  </ul>
-                </div>
-              : ""}</p>
+          <div className='centered'>
+            <div className="info-panel-light">
+                <p>{this.state.entry}</p>
             </div>
-            <div>
-              <p>{classifications.includes("Anxiety") ? 
-                <div>
-                  <p>Ways to manage anxiety:</p>
-                  <ul>
-                    <li>Talk to someone you trust</li>
-                    <li>Set aside time to focus on your worries so you're not worrying that you forgot something important</li>
-                    <li>Journal/write down your worries</li>
-                    <li>Do breathing exercises</li>
-                  </ul>
-                </div>
-              : ""}</p>
-            </div>
-            <div>
-              <p>{classifications.includes("Low self esteem") ? 
-                <div>
-                  <p>Ways to manage low self esteem:</p>
-                  <ul>
-                    <li>Take care of your physical health -- get enough sleep!</li>
-                    <li>Say kind things to yourself</li>
-                    <li>Ask people what they like about you</li>
-                  </ul>
-                </div>
-              : ""}</p>
-            </div>
+            
+            <ResponsePanel classifications={this.state.classifications} />
+            <br></br>
+            <Link to="/">
+              <button>Back</button>
+            </Link>
+            <Link to="/">
+              <button>Save Entry</button>
+            </Link>
+           
           </div>
         )}
       </div>

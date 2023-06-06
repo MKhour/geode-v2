@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+html {
+  background-image: linear-gradient(#90C4E8,#D7EDF0, #D7EDF0); /* #90C4E8, #D7EDF0); */
+  background-repeat: no-repeat;
+  height: 100%;
+  background-color: #D7EDF0;
+}
+
+.App {
+  width: 100%;
+  font-family: 'Comfortaa', cursive;
+  color: #FFFFFF;
+}
+
+.home-header {
+  background-image: url('../public/geode-header-thin.png');
+  background-color: #D7EDF0;
+  /* Set up positioning -- this makes the image go all the way to the edges of the page */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.centered {
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 46px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.nav-title {
+  font-size: 32px;
+}
+
+.nav {
+  font-size: 20px;
+  align-items: left;
+}
+
+.div {
+  align-content: center;
+  text-align: center;
+}
+
+.plaintext {
+  list-style: none;
+  padding: 0;
+  font-size: 32px;
+  margin-bottom: 2em;
+}
+
+.link {
+  color: #FFFFFF;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-decoration: none;
+}
+
+.more {
+  font-size: 32px;
+  border: 2px solid #000;
+  background-color: #fff;
+  padding: 10px 25px;
+}
+
+.more:hover {
+  background-color: #FDD836;
+}
+
+.more:active {
+  background-color: #FFEFA9;
+}
+
+.main-title {
+  font-size: 64px;
+  padding: 0px;
+  padding-top: 10px;
+  margin: 0px;
+}
+
+button, input, textarea, .info-panel, .info-panel-light {
+  border-radius: 30px;
+  background-color: #FFFFFF;
+  padding: 16px 32px;
+  color: #7FA3C0;
+  box-shadow: 0px 15px 40px #A2C3C7;
+  margin: 20px;
+  border: none;
+  font-family: 'Comfortaa';
+  font-size: 16px;
+  text-align: center;
+  display: inline-block; 
+  overflow:visible;
+}
+
+textarea, .info-panel, .info-panel-light {
+  align-self: center;
+  width: 60%;
+  min-height: 20%;
+}
+
+textarea:focus {
+  border: none;
+  outline:none;
+}
+
+textarea:select {
+  border: none;
+  outline: none;
+}
+
+.info-panel {
+  background-color: rgba(255, 255, 255, 0.4);
+  text-align: left;
+}
+
+@media screen and (min-width: 650px) {
+  .main-title {
+    padding-top: 60px;
+  }
+
+  button {
+    box-shadow: 0px 15px 40px #A2C3C7;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .main-title {
+    padding-top: 150px;
+  }
+
+  button {
+    box-shadow: 0px 15px 40px #7FA3C0;
+  }
+}
