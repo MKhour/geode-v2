@@ -3,6 +3,7 @@ const path = require('path');
 const generatePassword = require('password-generator');
 const cohere = require("cohere-ai");
 const { type } = require('os');
+require('dotenv').config();
 const apiKey = process.env.API_KEY;
 cohere.init(apiKey);
 
