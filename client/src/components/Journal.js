@@ -6,8 +6,7 @@ class Journal extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {entry: '', value: "", finished: false, classifications: []};
-    // value has to stay, it clears the text area so that a character is only added once
+    this.state = {entry: '', finished: false, classifications: []};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,7 +20,21 @@ class Journal extends Component {
 
   handleChange(event) {
     // updates entry value to include newly typed character
-    this.setState({entry: this.state.entry + event.target.value});
+    this.setState({entry: event.target.value});
+  }
+
+  preventBackspacing(event) {
+    const key = event.key; // const {key} = event; ES6+
+    if (key === "Backspace" || key === "Delete") {
+        // console.log("stop!!");
+        event.preventDefault();
+    }
+    // this.setState({entry: this.state.entry + event.key});
+    /*
+    var key = event.keyCode || event.charCode;
+
+    if( key == 8 || key == 46 )
+        return false;*/
   }
 
   classifyTextAPI = (inputs) => {
@@ -46,7 +59,7 @@ class Journal extends Component {
     const { finished } = this.state;
 
     return (
-      <div className="App pages">
+      <div className="App">
         <Header />
         <div className='centered'>
           <h1>Geode Journaling</h1>
@@ -57,15 +70,8 @@ class Journal extends Component {
           <div className='centered'>
             <ul className="plaintext">
               <form onSubmit={ this.handleSubmit }>
-                <p>your entry:
-                {/* manual spacing, can replace with CSS/styling */}
-                <br></br>
-                <br></br>
-                {this.state.entry}</p>
-
-                <textarea value={this.state.value} onChange={this.handleChange}/>
-                <br></br> 
-
+                <p>{this.state.entry}</p>
+                <textarea onKeyDown={this.preventBackspacing} onChange={this.handleChange}/>
                 <input type="submit" value="Done editing"></input>
               </form>
             </ul>
